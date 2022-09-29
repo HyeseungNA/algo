@@ -1,7 +1,7 @@
-def increase(number):
-    numbers = str(number) #문자열로 변환
-    for m in range(len(numbers)-1):
-        if numbers[m] > numbers[m+1]:
+def increase(multi):
+    compare = str(multi)
+    for m in range(len(compare)-1):
+        if compare[m] > compare[m+1]:
             return False
     return True
 
@@ -12,12 +12,13 @@ for testcase in range(1,T+1):
     MAX = -1
     for i in range(N-1):
         for j in range(i+1,N):
-            num = arr[i] * arr[j]  # 숫자들 곱한 값을 보내주기
-            if increase(num):
-                if MAX < num:
-                    MAX = num
-    print(f'#{testcase} {MAX}')
+            multi = arr[i] * arr[j]
+            if increase(multi):
+                if MAX < multi:
+                    MAX = multi
     
+    print(MAX)            
+                
     
                 
 
