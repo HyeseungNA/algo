@@ -2,29 +2,36 @@ T = int(input())
 for testcase in range(1,T+1):
     card = list(input())
     arr = ['S','D','H','C']
-    print(len(card))
+    k = len(card)
+    flag = 0
+    print(f'#{testcase}',end = ' ')
     
+    cnts= []
     for m in range(4):
         bucket = [0] * 14
-        for i in range(len(card)//3):
-            for j in range(i*3,i*3 + 3):
-                if arr[j][0] == arr[m]:
-                        bucket[int(card[j][1]+ arr[j][2])] += 1
+        for i in range(0,k,3):
+            if card[i] == arr[m]:
+                bucket[int(card[i+1]+ card[i+2])] += 1
+ 
         cnt = 0
-        for l in range(len(bucket)):
+        for l in range(1,len(bucket)):      
+            if bucket[l] > 1:
+                flag = 1
+                break
             if bucket[l] == 0:
                 cnt +=1
-                print(cnt,end = '')
-            if bucket[l] > 1:
-                print('ERROR')
-                break
+        cnts.append(cnt)     
         
-                    
-            
-                
+    
+    if flag == 1:
+        print('ERROR')
+    else:
+        print(*cnts)
         
+        
+    
 
 '''
-3
-S01D02H03H04
+1
+H02H10S11H02
 '''
